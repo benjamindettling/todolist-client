@@ -1,21 +1,17 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 const EditTodo = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
 
-  // edit description function
   const updateDescription = async (e) => {
     e.preventDefault();
     try {
       const body = { description };
-      await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/todos/${todo.todo_id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/todos/${todo.todo_id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
       window.location = "/";
     } catch (err) {
@@ -24,7 +20,7 @@ const EditTodo = ({ todo }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <a>
         <button
           type="button"
@@ -72,7 +68,7 @@ const EditTodo = ({ todo }) => {
                   type="button"
                   className="cta-btn cta-btn--hero"
                   data-dismiss="modal"
-                  onClick={(e) => updateDescription(e)}
+                  onClick={updateDescription}
                 >
                   Edit
                 </button>
@@ -91,7 +87,7 @@ const EditTodo = ({ todo }) => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

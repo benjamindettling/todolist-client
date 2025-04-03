@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 
 const ListTodos = () => {
@@ -7,7 +7,7 @@ const ListTodos = () => {
   const deleteTodo = async (id) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/todos/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/todos/${id}`,
         { method: "DELETE" }
       );
 
@@ -21,7 +21,7 @@ const ListTodos = () => {
   const getTodos = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/todos`
+        `${import.meta.env.VITE_API_BASE_URL}/todos`
       );
       const jsonData = await response.json();
       setTodos(jsonData);
@@ -35,11 +35,9 @@ const ListTodos = () => {
   }, []);
 
   return (
-    <section id="todos">
+    <section id="listtodos-section">
       <div className="container">
         <div className="todo-wrapper">
-          <h2 className="section-title dark-blue-text">Your Todos</h2>
-
           {/* Column headers */}
           <div className="row fw-bold mb-3">
             <div className="col-md-6 col-sm-6 todo-wrapper__text-title">
@@ -56,24 +54,26 @@ const ListTodos = () => {
           {/* Todo items */}
           <div className="todo-list">
             {todos.map((todo) => (
-              <div className="row align-items-center mb-3" key={todo.todo_id}>
-                <div className="col-md-6 col-sm-6">
-                  <p className="text-color-light mb-0">{todo.description}</p>
-                </div>
+              <div className="todo-card" key={todo.todo_id}>
+                <div className="row align-items-center">
+                  <div className="col-md-6 col-sm-6">
+                    <p className="text-color-light mb-0">{todo.description}</p>
+                  </div>
 
-                <div className="col-md-3 col-sm-3 text-md-center mt-sm-2 mt-md-0">
-                  <EditTodo todo={todo} />
-                </div>
+                  <div className="col-md-3 col-sm-3 text-md-center mt-sm-2 mt-md-0">
+                    <EditTodo todo={todo} />
+                  </div>
 
-                <div className="col-md-3 col-sm-3 text-md-center mt-sm-2 mt-md-0">
-                  <a>
-                    <button
-                      className="cta-btn cta-btn--hero"
-                      onClick={() => deleteTodo(todo.todo_id)}
-                    >
-                      Delete
-                    </button>
-                  </a>
+                  <div className="col-md-3 col-sm-3 text-md-center mt-sm-2 mt-md-0">
+                    <a>
+                      <button
+                        className="cta-btn cta-btn--hero"
+                        onClick={() => deleteTodo(todo.todo_id)}
+                      >
+                        Delete
+                      </button>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}

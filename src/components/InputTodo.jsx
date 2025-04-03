@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 const InputTodo = () => {
   const [description, setDescription] = useState("");
@@ -9,7 +9,7 @@ const InputTodo = () => {
     try {
       const body = { description };
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/todos`,
+        `${import.meta.env.VITE_API_BASE_URL}/todos`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -25,21 +25,28 @@ const InputTodo = () => {
   };
 
   return (
-    <Fragment>
-      <h1 className="todo-title"></h1>
-      <form className="todo-form" onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          className="input"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Add a new task"
-        />
-        <a>
-          <button className="cta-btn cta-btn--hero">Add</button>
-        </a>
-      </form>
-    </Fragment>
+    <section id="add-todo">
+      <div className="container">
+        <h1 className="section-title dark-blue-text">PERN Todo List</h1>
+        <form
+          className="todo-form d-flex justify-content-center align-items-center gap-2"
+          onSubmit={onSubmitForm}
+        >
+          <input
+            type="text"
+            className="input"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Add a new task"
+          />
+          <a>
+            <button className="cta-btn cta-btn--hero" type="submit">
+              Add
+            </button>
+          </a>
+        </form>
+      </div>
+    </section>
   );
 };
 
