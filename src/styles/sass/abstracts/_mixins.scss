@@ -1,0 +1,76 @@
+@use "../abstracts/variables";
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:          Phone
+600px - 900px       Table Portrait
+900px - 1200px      Table Landscape
+[1200px - 1800px]   Desktop Normal Styles
+1800px +            Big Desktop
+
+1em = 16px
+
+ORDER: Base + Typography > General Layout + Grid > Page Layout > Components
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone-xs {
+    @media (max-width: 20em) {
+      @content;
+    }
+  }
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port-sm {
+    @media (max-width: 48em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
+
+@mixin section-borders {
+  border: 1.5rem solid #fff;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+@mixin supportColorForIE11 {
+  color: variables.$secondary-color;
+  -webkit-text-fill-color: variables.$secondary-color;
+
+  @supports (-webkit-background-clip: text) or (background-clip: text) {
+    background-image: linear-gradient(
+      135deg,
+      variables.$primary-color 0%,
+      variables.$secondary-color 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+@mixin supportIE11 {
+  @media screen and (-ms-high-contrast: active),
+    screen and (-ms-high-contrast: none) {
+    @content;
+  }
+}

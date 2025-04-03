@@ -1,0 +1,55 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+
+h1 {
+  font-weight: 700;
+}
+
+p,
+a {
+  font-family: "Montserrat", sans-serif;
+  font-size: variables.$default-font-size;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+a:hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.section-title {
+  margin: 0px;
+  margin-bottom: 4.5rem;
+  font-size: variables.$big-font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  @include mixins.respond(phone) {
+    font-size: 2.8rem;
+  }
+}
+
+.dark-blue-text {
+  color: variables.$dark-blue-text !important;
+}
+
+.text-color-main {
+  @include mixins.supportColorForIE11();
+
+  @include mixins.respond(phone) {
+    background-image: none;
+    -webkit-text-fill-color: variables.$secondary-color;
+  }
+
+  &:hover {
+    transform: translateX(2px);
+  }
+}

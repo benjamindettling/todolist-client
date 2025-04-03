@@ -1,0 +1,33 @@
+@use "../abstracts/variables";
+
+html {
+  font-size: 62.5%;
+  
+  
+
+  &.sr .load-hidden {
+    visibility: hidden;
+  }
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: variables.$light-grey;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: variables.$primary-color;
+}

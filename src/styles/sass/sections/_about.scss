@@ -1,0 +1,82 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+#about {
+  background-color: variables.$primary-color;
+  background-image: linear-gradient(
+    135deg,
+    variables.$primary-color 0%,
+    variables.$secondary-color 100%
+  );
+  color: variables.$white-color;
+  height: 100%;
+  border-top: 0px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  padding-bottom: 10%;
+
+  @include mixins.respond(tab-land) {
+    height: 100%;
+    -webkit-clip-path: none;
+    clip-path: none;
+  }
+
+  .about-wrapper {
+    @include mixins.respond(phone) {
+      padding-bottom: 5rem;
+    }
+
+    &__image {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+
+      @include mixins.respond(tab-land) {
+        height: 100%;
+      }
+      @include mixins.respond(tab-port-sm) {
+        padding-bottom: 6.4rem;
+      }
+    }
+
+    &__info {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      flex-direction: column;
+
+      @include mixins.respond(tab-port-sm) {
+        align-items: center;
+      }
+
+      &-text {
+        text-align: left;
+
+        @include mixins.respond(tab-port) {
+          text-align: left;
+        }
+        @include mixins.respond(tab-port-sm) {
+          text-align: center;
+        }
+
+        &--important {
+          background: darken(variables.$secondary-color, 1%);
+          display: inline-block;
+          font-style: italic;
+          padding: 0 0.3rem;
+          margin: 0.3rem 0;
+          line-height: 1.6;
+
+          @include mixins.respond(phone) {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.footer {
+  background-color: variables.$dark-grey;
+  color: variables.$white-color;
+  padding: 4.8rem 0;
+
+  @include mixins.respond(phone) {
+    border: 0px;
+  }
+
+  &__text {
+    color: darken(variables.$white-color, 50%);
+    font-size: 1.3rem;
+
+    a {
+      color: darken(variables.$white-color, 50%);
+      font-size: 1.3rem;
+      transition: all 0.4s;
+      display: inline-block;
+      background-color: variables.$dark-grey;
+
+      &:hover,
+      &:active {
+        color: variables.$primary-color;
+        -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  & hr {
+    margin: 1rem auto;
+    border: 0;
+    width: 50%;
+    border-top: 2px solid grey;
+  }
+}
+
+.social-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: variables.$white-color;
+    font-size: 3rem;
+    width: 5rem;
+    height: 5rem;
+    margin: variables.$default-font-size variables.$default-font-size;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.back-to-top i {
+  color: variables.$white-color;
+  margin: 1rem 0 variables.$default-font-size;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
