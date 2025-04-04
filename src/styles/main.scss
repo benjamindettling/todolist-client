@@ -7,8 +7,11 @@
 @use "./sass/base/base";
 @use "./sass/base/typography";
 
+// components
 @use "./sass/components/buttons";
 @use "./sass/components/inputs";
+@use "./sass/components/modals";
+@use "./sass/components/spinner";
 @use "./sass/components/todo";
 
 @use "./sass/layout/container";

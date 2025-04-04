@@ -1,7 +1,7 @@
 @use "../abstracts/variables";
 @use "../abstracts/mixins";
 
-/* Call to Action Button */
+// Base Button
 .cta-btn {
   display: inline-block;
   position: relative;
@@ -9,76 +9,30 @@
   font-weight: bold;
   line-height: 1;
   z-index: 1;
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.6s;
+  border: 2px solid transparent;
+  background: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.4s ease-in-out;
 
   &::after {
     content: "";
     display: block;
     position: absolute;
-    width: 0px;
+    width: 0%;
     height: 100%;
     left: 0;
     bottom: 0;
     z-index: -1;
-    transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.3s;
-  }
-}
-
-/* Hero Style */
-.cta-btn--hero {
-  @include mixins.supportColorForIE11();
-  border-width: 2px;
-  border-style: solid;
-  -moz-border-image: -moz-linear-gradient(
-    135deg,
-    variables.$primary-color 0%,
-    variables.$secondary-color 100%
-  );
-  -webkit-border-image: -webkit-linear-gradient(
-    135deg,
-    variables.$primary-color 0%,
-    variables.$secondary-color 100%
-  );
-  border-image: linear-gradient(
-    135deg,
-    variables.$primary-color 0%,
-    variables.$secondary-color 100%
-  );
-  -webkit-border-image-slice: 1;
-  border-image-slice: 1;
-
-  @include mixins.supportIE11() {
-    color: variables.$secondary-color !important;
-    &:hover {
-      color: variables.$white-color !important;
-    }
-  }
-
-  @include mixins.respond(phone) {
-    background-image: none;
-    border: 2px solid variables.$secondary-color;
-    -webkit-text-fill-color: variables.$secondary-color;
-  }
-
-  &::after {
-    background-image: linear-gradient(
-      135deg,
-      variables.$primary-color 0%,
-      variables.$secondary-color 100%
-    );
-
-    @include mixins.respond(phone) {
-      background-image: none;
-    }
+    transition: width 0.3s ease-in-out;
   }
 
   &:hover {
+    color: variables.$white-color;
     -webkit-text-fill-color: variables.$white-color;
     text-decoration: none;
-
-    @include mixins.respond(phone) {
-      -webkit-text-fill-color: variables.$secondary-color;
-    }
 
     &::after {
       width: 100%;
@@ -86,10 +40,26 @@
   }
 }
 
-/* Resume Style */
+
+.cta-btn--hero {
+  @include mixins.button-variant(variables.$primary-color, variables.$secondary-color);
+}
+
+.cta-btn--purple {
+  @include mixins.button-variant(#e0d611, #8f8300);
+}
+
+.cta-btn--red {
+  @include mixins.button-variant(#ab0101, #590000);
+}
+
+
+
+
 .cta-btn--resume {
-  color: variables.$white-color;
   border: 2px solid variables.$white-color;
+  color: variables.$white-color;
+  -webkit-text-fill-color: variables.$white-color;
 
   &::after {
     background: variables.$white-color;
@@ -97,19 +67,18 @@
 
   &:hover {
     color: variables.$secondary-color;
+    -webkit-text-fill-color: variables.$secondary-color;
     text-decoration: none;
-
-    &::after {
-      width: 100%;
-    }
   }
 }
+
 
 /* Arrow Button */
 .up i {
   color: #272727;
 }
 
+/* Project Links */
 .project-links {
   margin-top: 1.5rem;
 

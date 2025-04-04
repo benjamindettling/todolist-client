@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const InputTodo = () => {
+const InputTodo = ({ todoCount }) => {
   const [description, setDescription] = useState("");
+  const todoLimitReached = todoCount >= 5;
+
+  useEffect(() => {
+    const checkLimit = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/todos`
+        );
+        const todos = await response.json();
+        setTodoLimitReached(todos.length >= 5);
+      } catch (err) {
+        console.error("Error checking todo limit:", err.message);
+      }
+    };
+
+    checkLimit();
+  }, []);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -38,13 +55,25 @@ const InputTodo = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Add a new task"
+            disabled={todoLimitReached}
           />
           <a>
-            <button className="cta-btn cta-btn--hero" type="submit">
+            <button
+              className="cta-btn cta-btn--hero"
+              type="submit"
+              disabled={todoLimitReached}
+            >
               Add
             </button>
           </a>
         </form>
+
+        {todoLimitReached && (
+          <p className="text-center text-color-light mt-3">
+            🚫 Maximum todos reached. Please delete one before adding a new
+            task.
+          </p>
+        )}
       </div>
     </section>
   );
