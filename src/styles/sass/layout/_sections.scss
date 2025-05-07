@@ -4,8 +4,6 @@
 section {
   width: 100vw;
   padding: 5rem 0rem;
-  
-  
 
   @include mixins.respond(phone) {
     border: none;

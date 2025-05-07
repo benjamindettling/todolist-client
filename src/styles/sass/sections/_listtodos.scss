@@ -8,8 +8,12 @@
   padding: 3rem 0rem;
   max-width: 90vw;
   text-align: center;
-  background: linear-gradient(to bottom right, variables.$primary-color, variables.$secondary-color);
-  
+  background: linear-gradient(
+    to bottom right,
+    variables.$primary-color,
+    variables.$secondary-color
+  );
+
   color: variables.$dark-blue-text;
 
   .todo-wrapper {
@@ -21,10 +25,6 @@
 
     .row {
       margin-bottom: 0rem;
-
-      @include mixins.respond(phone) {
-        margin-bottom: 4rem;
-      }
     }
 
     &__text {
@@ -43,27 +43,13 @@
         font-size: variables.$mid-font-size;
 
         @include mixins.respond(phone) {
-          font-size: 2rem;
+          font-size: 3rem; //2?
         }
       }
 
       & p > a {
         color: variables.$secondary-color;
       }
-    }
-  }
-
-  .todo-card {
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      transform: translateY(-2px);
     }
   }
 }

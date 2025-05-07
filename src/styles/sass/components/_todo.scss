@@ -11,62 +11,21 @@
     margin-top: 0;
     padding-top: 1rem;
   }
+}
 
-  .todo-wrapper {
-    margin-bottom: 1rem;
+.todo-card {
+  background-color: #ffffff;
+  margin: 0rem;
+  padding: 1rem; //0?
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease-in-out;
 
-    @include mixins.respond(phone) {
-      margin-bottom: 0rem;
-    }
-
-    .row {
-      margin-bottom: 0rem;
-
-      @include mixins.respond(phone) {
-        margin-bottom: 4rem;
-      }
-    }
-
-    &__text {
-      text-align: left;
-
-      @include mixins.respond(phone) {
-        margin-bottom: 2.5rem !important;
-      }
-      @include mixins.respond(tab-land) {
-        margin-bottom: 4.8rem;
-      }
-
-      &-title {
-        font-weight: bold;
-        margin-bottom: 1.8rem;
-        font-size: variables.$mid-font-size;
-
-        @include mixins.respond(phone) {
-          font-size: 3rem;
-        }
-      }
-
-      & p > a {
-        color: variables.$secondary-color;
-      }
-    }
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
   }
-  .todo-card {
-    background-color: #ffffff;
-    margin: 0rem;
-    padding: 0rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease-in-out;
-  
-    &:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      transform: translateY(-2px);
-    }
-  }
-  
 }
